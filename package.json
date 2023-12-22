@@ -1,7 +1,7 @@
 {
   "name": "@luban-ui/eslint-config",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lu Ban ui ESLint config",
   "author": "Season Chen season.chen.i@foxmail.com> (https://github.com/ccqgithub/)",
   "license": "MIT",
@@ -22,7 +22,8 @@
     "dist"
   ],
   "scripts": {
-    "lint": "eslint"
+    "lint": "eslint",
+    "build": "tsup src/index.ts"
   },
   "peerDependencies": {
     "stylelint": "^8.0.0"
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "eslint": "^8.56.0",
+    "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   }
 }

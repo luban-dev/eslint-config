@@ -1,16 +1,12 @@
-import antfu from '@antfu/eslint-config';
-
-export default function luban(options = {}) {
+// src/index.ts
+import antfu from "@antfu/eslint-config";
+function luban(options = {}) {
   return antfu(
     {
-      stylistic: {
-        semi: 'always'
-      }
-    },
-    {
       rules: {
-        'style/comma-dangle': ['warn', 'never'],
-        'style/quote-props': ['error', 'as-needed']
+        "style/semi": ["warn", "always"],
+        "style/comma-dangle": ["warn", "never"],
+        "style/quote-props": ["error", "as-needed"]
       }
     },
     {
@@ -18,3 +14,6 @@ export default function luban(options = {}) {
     }
   );
 }
+export {
+  luban as default
+};
