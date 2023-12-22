@@ -24,6 +24,9 @@
   "scripts": {
     "lint": "eslint"
   },
+  "peerDependencies": {
+    "stylelint": "^8.0.0"
+  },
   "dependencies": {
     "@antfu/eslint-config": "^2.4.6"
   },
