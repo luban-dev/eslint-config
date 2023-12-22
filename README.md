@@ -1,4 +1,4 @@
-# Luban Eslint Config
+# Lu Ban Eslint Config
 
 - extends from [@antfu/eslint-config](https://github.com/antfu/eslint-config);
 

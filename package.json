@@ -2,7 +2,7 @@
   "name": "@luban-ui/eslint-config",
   "type": "module",
   "version": "1.0.0",
-  "description": "Luban ui ESLint config",
+  "description": "Lu Ban ui ESLint config",
   "author": "Season Chen season.chen.i@foxmail.com> (https://github.com/ccqgithub/)",
   "license": "MIT",
   "homepage": "https://github.com/luban-dev/eslint-config",
