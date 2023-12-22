@@ -1,0 +1,34 @@
+{
+  "name": "@luban-ui/eslint-config",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Luban ui ESLint config",
+  "author": "Season Chen season.chen.i@foxmail.com> (https://github.com/ccqgithub/)",
+  "license": "MIT",
+  "homepage": "https://github.com/luban-dev/eslint-config",
+  "keywords": [
+    "eslint-config"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "^2.4.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  }
+}
