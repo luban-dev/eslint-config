@@ -26,7 +26,11 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
       }
     },
     {
-      ignores: ['**/*.d.ts']
+      ignores: [
+        '**/*.d.ts',
+        'package-lock.json',
+        'yarn.lock'
+      ]
     },
     ...userConfigs
   );
