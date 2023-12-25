@@ -16,7 +16,24 @@ With ["type": "module"](https://nodejs.org/api/packages.html#type) in package.js
 // eslint.config.js
 import luban from '@luban-ui/eslint-config';
 
-export default luban();
+export default luban(
+  // Configures for antfu's config
+  {
+    vue: {
+      // ...
+    }
+  },
+
+  // From the second arguments they are ESLint Flat Configs
+  // you can have multiple configs
+  {
+    files: ['**/*.ts'],
+    rules: {}
+  },
+  {
+    rules: {}
+  }
+);
 ```
 
 With CJS:
