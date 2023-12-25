@@ -53,6 +53,9 @@ function luban(options = {}, ...userConfigs) {
         "antfu/top-level-function": "off"
       }
     },
+    {
+      ignores: ["**/*.d.ts"]
+    },
     ...userConfigs
   );
 }

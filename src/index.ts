@@ -25,6 +25,9 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
         'antfu/top-level-function': 'off'
       }
     },
+    {
+      ignores: ['**/*.d.ts']
+    },
     ...userConfigs
   );
 }
