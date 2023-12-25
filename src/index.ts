@@ -21,7 +21,8 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
           multiline: {
             delimiter: 'semi'
           }
-        }]
+        }],
+        'antfu/top-level-function': 'off'
       }
     },
     ...userConfigs

@@ -15,7 +15,8 @@ function luban(options = {}, ...userConfigs) {
           multiline: {
             delimiter: "semi"
           }
-        }]
+        }],
+        "antfu/top-level-function": "off"
       }
     },
     ...userConfigs
