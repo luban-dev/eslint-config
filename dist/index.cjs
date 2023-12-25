@@ -34,17 +34,24 @@ __export(src_exports, {
 });
 module.exports = __toCommonJS(src_exports);
 var import_eslint_config = __toESM(require("@antfu/eslint-config"), 1);
-function luban(options = {}) {
+function luban(options = {}, ...userConfigs) {
+  const { ...rest } = options;
   return (0, import_eslint_config.default)(
+    {
+      ...rest
+    },
     {
       rules: {
         "style/semi": ["warn", "always"],
         "style/comma-dangle": ["warn", "never"],
-        "style/quote-props": ["error", "as-needed"]
+        "style/quote-props": ["warn", "as-needed"],
+        "style/member-delimiter-style": ["warn", {
+          multiline: {
+            delimiter: "semi"
+          }
+        }]
       }
     },
-    {
-      ...options
-    }
+    ...userConfigs
   );
 }

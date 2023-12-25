@@ -1,17 +1,24 @@
 // src/index.ts
 import antfu from "@antfu/eslint-config";
-function luban(options = {}) {
+function luban(options = {}, ...userConfigs) {
+  const { ...rest } = options;
   return antfu(
+    {
+      ...rest
+    },
     {
       rules: {
         "style/semi": ["warn", "always"],
         "style/comma-dangle": ["warn", "never"],
-        "style/quote-props": ["error", "as-needed"]
+        "style/quote-props": ["warn", "as-needed"],
+        "style/member-delimiter-style": ["warn", {
+          multiline: {
+            delimiter: "semi"
+          }
+        }]
       }
     },
-    {
-      ...options
-    }
+    ...userConfigs
   );
 }
 export {
