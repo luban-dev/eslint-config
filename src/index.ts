@@ -57,7 +57,8 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
             delimiter: 'semi'
           }
         }],
-        'antfu/top-level-function': 'off'
+        'antfu/top-level-function': 'off',
+        curly: 'off'
       }
     },
     {

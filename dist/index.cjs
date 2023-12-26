@@ -80,7 +80,8 @@ function luban(options = {}, ...userConfigs) {
             delimiter: "semi"
           }
         }],
-        "antfu/top-level-function": "off"
+        "antfu/top-level-function": "off",
+        curly: "off"
       }
     },
     {
