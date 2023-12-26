@@ -1,5 +1,9 @@
+import process from 'node:process';
 import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config';
 import antfu from '@antfu/eslint-config';
+import { FlatCompat } from '@eslint/eslintrc';
+
+const compat = new FlatCompat();
 
 interface Alias {
   map: string[][];
@@ -11,6 +15,7 @@ interface Options extends OptionsConfig, FlatConfigItem {
 };
 
 export default function luban(options: Options = {}, ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]) {
+  const isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI);
   const {
     alias = {
       map: [
@@ -61,6 +66,19 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
         'antfu/top-level-function': 'off',
         'no-console': 'off',
         curly: 'off'
+      }
+    },
+    // disable auto fix
+    compat.plugins('disable-autofix'),
+    {
+      rules: {
+        ...isInEditor
+          ? {
+              'disable-autofix/unused-imports/no-unused-imports': 'warn'
+            }
+          : {
+              'unused-imports/no-unused-imports': 'warn'
+            }
       }
     },
     {

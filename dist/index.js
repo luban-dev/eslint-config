@@ -1,6 +1,10 @@
 // src/index.ts
+import process from "process";
 import antfu from "@antfu/eslint-config";
+import { FlatCompat } from "@eslint/eslintrc";
+var compat = new FlatCompat();
 function luban(options = {}, ...userConfigs) {
+  const isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI);
   const {
     alias = {
       map: [
@@ -49,8 +53,18 @@ function luban(options = {}, ...userConfigs) {
         "style/brace-style": ["warn", "1tbs"],
         "antfu/top-level-function": "off",
         "no-console": "off",
-        "unused-imports/no-unused-imports": "warn",
         curly: "off"
+      }
+    },
+    // disable auto fix
+    compat.plugins("disable-autofix"),
+    {
+      rules: {
+        ...isInEditor ? {
+          "disable-autofix/unused-imports/no-unused-imports": "warn"
+        } : {
+          "unused-imports/no-unused-imports": "warn"
+        }
       }
     },
     {
