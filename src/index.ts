@@ -96,6 +96,19 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
       }
     },
     {
+      files: [
+        '*.md/**/*.{js,ts,jsx,tsx,vue}'
+      ],
+      rules: {
+        'import/no-unresolved': 'off',
+        'import/named': 'off',
+        'import/namespace': 'off',
+        'import/default': 'off',
+        'import/export': 'off',
+        'import/no-duplicates': 'off'
+      }
+    },
+    {
       ignores: [
         '**/*.d.ts',
         '**/package-lock.json'

@@ -1,7 +1,7 @@
 {
   "name": "@luban-ui/eslint-config",
   "type": "module",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Lu Ban ui ESLint config",
   "author": "Season Chen season.chen.i@foxmail.com> (https://github.com/ccqgithub/)",
   "license": "MIT",
