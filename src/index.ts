@@ -1,12 +1,25 @@
 import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config';
 import antfu from '@antfu/eslint-config';
 
+interface Alias {
+  map: string[][];
+  extensions: string[];
+}
+
 interface Options extends OptionsConfig, FlatConfigItem {
-  //
+  alias?: Alias;
 };
 
 export default function luban(options: Options = {}, ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]) {
-  const { ...rest } = options;
+  const {
+    alias = {
+      map: [
+        ['@', './src']
+      ],
+      extensions: ['.ts', '.js', '.jsx', 'tsx', '.vue', '.json']
+    },
+    ...rest
+  } = options;
 
   return antfu(
     {
@@ -27,6 +40,9 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
         'import/parsers': {
           espree: ['.js', '.cjs', '.mjs', '.jsx'],
           '@typescript-eslint/parser': ['.ts']
+        },
+        'import/resolver': {
+          alias
         }
       }
     },
@@ -40,8 +56,14 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
             delimiter: 'semi'
           }
         }],
-        'antfu/top-level-function': 'off',
-
+        'antfu/top-level-function': 'off'
+      }
+    },
+    {
+      files: [
+        '**/*.js'
+      ],
+      rules: {
         // import
         'import/no-unresolved': 'error',
         'import/named': 'error',

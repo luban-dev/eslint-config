@@ -1,7 +1,15 @@
 // src/index.ts
 import antfu from "@antfu/eslint-config";
 function luban(options = {}, ...userConfigs) {
-  const { ...rest } = options;
+  const {
+    alias = {
+      map: [
+        ["@", "./src"]
+      ],
+      extensions: [".ts", ".js", ".jsx", "tsx", ".vue", ".json"]
+    },
+    ...rest
+  } = options;
   return antfu(
     {
       ...rest
@@ -21,6 +29,9 @@ function luban(options = {}, ...userConfigs) {
         "import/parsers": {
           espree: [".js", ".cjs", ".mjs", ".jsx"],
           "@typescript-eslint/parser": [".ts"]
+        },
+        "import/resolver": {
+          alias
         }
       }
     },
@@ -34,8 +45,15 @@ function luban(options = {}, ...userConfigs) {
             delimiter: "semi"
           }
         }],
-        "antfu/top-level-function": "off",
-        // import recommend
+        "antfu/top-level-function": "off"
+      }
+    },
+    {
+      files: [
+        "**/*.js"
+      ],
+      rules: {
+        // import
         "import/no-unresolved": "error",
         "import/named": "error",
         "import/namespace": "error",

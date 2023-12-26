@@ -35,7 +35,15 @@ __export(src_exports, {
 module.exports = __toCommonJS(src_exports);
 var import_eslint_config = __toESM(require("@antfu/eslint-config"), 1);
 function luban(options = {}, ...userConfigs) {
-  const { ...rest } = options;
+  const {
+    alias = {
+      map: [
+        ["@", "./src"]
+      ],
+      extensions: [".ts", ".js", ".jsx", "tsx", ".vue", ".json"]
+    },
+    ...rest
+  } = options;
   return (0, import_eslint_config.default)(
     {
       ...rest
@@ -55,6 +63,9 @@ function luban(options = {}, ...userConfigs) {
         "import/parsers": {
           espree: [".js", ".cjs", ".mjs", ".jsx"],
           "@typescript-eslint/parser": [".ts"]
+        },
+        "import/resolver": {
+          alias
         }
       }
     },
@@ -68,8 +79,15 @@ function luban(options = {}, ...userConfigs) {
             delimiter: "semi"
           }
         }],
-        "antfu/top-level-function": "off",
-        // import recommend
+        "antfu/top-level-function": "off"
+      }
+    },
+    {
+      files: [
+        "**/*.js"
+      ],
+      rules: {
+        // import
         "import/no-unresolved": "error",
         "import/named": "error",
         "import/namespace": "error",
