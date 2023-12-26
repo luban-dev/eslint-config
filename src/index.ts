@@ -13,6 +13,24 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
       ...rest
     },
     {
+      settings: {
+        'import/no-unresolved': {
+          caseSensitive: true
+        },
+        'import/extensions': [
+          '.js',
+          '.ts',
+          '.jsx',
+          '.tsx',
+          '.vue'
+        ],
+        'import/parsers': {
+          espree: ['.js', '.cjs', '.mjs', '.jsx'],
+          '@typescript-eslint/parser': ['.ts']
+        }
+      }
+    },
+    {
       rules: {
         'style/semi': ['warn', 'always'],
         'style/comma-dangle': ['warn', 'never'],
@@ -22,7 +40,15 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
             delimiter: 'semi'
           }
         }],
-        'antfu/top-level-function': 'off'
+        'antfu/top-level-function': 'off',
+
+        // import
+        'import/no-unresolved': 'error',
+        'import/named': 'error',
+        'import/namespace': 'error',
+        'import/default': 'error',
+        'import/export': 'error',
+        'import/no-duplicates': 'warn'
       }
     },
     {

@@ -7,6 +7,24 @@ function luban(options = {}, ...userConfigs) {
       ...rest
     },
     {
+      settings: {
+        "import/no-unresolved": {
+          caseSensitive: true
+        },
+        "import/extensions": [
+          ".js",
+          ".ts",
+          ".jsx",
+          ".tsx",
+          ".vue"
+        ],
+        "import/parsers": {
+          espree: [".js", ".cjs", ".mjs", ".jsx"],
+          "@typescript-eslint/parser": [".ts"]
+        }
+      }
+    },
+    {
       rules: {
         "style/semi": ["warn", "always"],
         "style/comma-dangle": ["warn", "never"],
@@ -16,7 +34,14 @@ function luban(options = {}, ...userConfigs) {
             delimiter: "semi"
           }
         }],
-        "antfu/top-level-function": "off"
+        "antfu/top-level-function": "off",
+        // import recommend
+        "import/no-unresolved": "error",
+        "import/named": "error",
+        "import/namespace": "error",
+        "import/default": "error",
+        "import/export": "error",
+        "import/no-duplicates": "warn"
       }
     },
     {

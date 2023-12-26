@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-npm i -D eslint @luban-ui/eslint-config
+npm i -D eslint @types/eslint @luban-ui/eslint-config
 ```
 
 ## Create config file
