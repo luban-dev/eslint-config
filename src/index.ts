@@ -42,7 +42,8 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
           '@typescript-eslint/parser': ['.ts']
         },
         'import/resolver': {
-          alias
+          alias,
+          node: true
         }
       }
     },

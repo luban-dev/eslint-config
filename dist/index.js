@@ -31,7 +31,8 @@ function luban(options = {}, ...userConfigs) {
           "@typescript-eslint/parser": [".ts"]
         },
         "import/resolver": {
-          alias
+          alias,
+          node: true
         }
       }
     },
