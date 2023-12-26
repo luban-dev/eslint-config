@@ -46,7 +46,10 @@ function luban(options = {}, ...userConfigs) {
             delimiter: "semi"
           }
         }],
+        "style/brace-style": ["warn", "1tbs"],
         "antfu/top-level-function": "off",
+        "no-console": "off",
+        "unused-imports/no-unused-imports": "warn",
         curly: "off"
       }
     },
