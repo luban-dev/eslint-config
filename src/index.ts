@@ -110,7 +110,6 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
     },
     {
       ignores: [
-        '**/*.d.ts',
         '**/package-lock.json'
       ]
     },
