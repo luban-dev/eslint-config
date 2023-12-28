@@ -96,7 +96,6 @@ function luban(options = {}, ...userConfigs) {
     },
     {
       ignores: [
-        "**/*.d.ts",
         "**/package-lock.json"
       ]
     },
