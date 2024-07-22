@@ -1,9 +1,8 @@
 // src/index.ts
 import process from "process";
 import antfu from "@antfu/eslint-config";
-import { FlatCompat } from "@eslint/eslintrc";
-var compat = new FlatCompat();
-function luban(options = {}, ...userConfigs) {
+import disableAutofix from "eslint-plugin-disable-autofix";
+function luban(options, ...userConfigs) {
   const isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI);
   const {
     alias = {
@@ -13,10 +12,15 @@ function luban(options = {}, ...userConfigs) {
       extensions: [".ts", ".js", ".jsx", "tsx", ".vue", ".json"]
     },
     ...rest
-  } = options;
+  } = options || {};
   return antfu(
     {
       ...rest
+    },
+    {
+      plugins: {
+        "disable-autofix": disableAutofix
+      }
     },
     {
       settings: {
@@ -56,15 +60,12 @@ function luban(options = {}, ...userConfigs) {
         curly: "off"
       }
     },
-    // disable auto fix
-    compat.plugins("disable-autofix"),
     {
       rules: {
+        "unused-imports/no-unused-imports": "warn",
         ...isInEditor ? {
-          "disable-autofix/unused-imports/no-unused-imports": "warn"
-        } : {
           "unused-imports/no-unused-imports": "warn"
-        }
+        } : {}
       }
     },
     {

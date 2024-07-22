@@ -1,20 +1,20 @@
 import process from 'node:process';
-import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config';
 import antfu from '@antfu/eslint-config';
-import { FlatCompat } from '@eslint/eslintrc';
+import disableAutofix from 'eslint-plugin-disable-autofix';
 
-const compat = new FlatCompat();
+type AntfuArguments = Parameters<typeof antfu>;
+type RestArguments = AntfuArguments[1][];
 
 interface Alias {
   map: string[][];
   extensions: string[];
 }
 
-interface Options extends OptionsConfig, FlatConfigItem {
+type Options = AntfuArguments[0] & {
   alias?: Alias;
 };
 
-export default function luban(options: Options = {}, ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]) {
+export default function luban(options?: Options, ...userConfigs: RestArguments) {
   const isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI);
   const {
     alias = {
@@ -24,11 +24,16 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
       extensions: ['.ts', '.js', '.jsx', 'tsx', '.vue', '.json']
     },
     ...rest
-  } = options;
+  } = options || {};
 
   return antfu(
     {
       ...rest
+    },
+    {
+      plugins: {
+        'disable-autofix': disableAutofix
+      }
     },
     {
       settings: {
@@ -68,17 +73,14 @@ export default function luban(options: Options = {}, ...userConfigs: Awaitable<U
         curly: 'off'
       }
     },
-    // disable auto fix
-    compat.plugins('disable-autofix'),
     {
       rules: {
+        'unused-imports/no-unused-imports': 'warn',
         ...isInEditor
           ? {
-              'disable-autofix/unused-imports/no-unused-imports': 'warn'
-            }
-          : {
               'unused-imports/no-unused-imports': 'warn'
             }
+          : {}
       }
     },
     {

@@ -35,9 +35,8 @@ __export(src_exports, {
 module.exports = __toCommonJS(src_exports);
 var import_node_process = __toESM(require("process"), 1);
 var import_eslint_config = __toESM(require("@antfu/eslint-config"), 1);
-var import_eslintrc = require("@eslint/eslintrc");
-var compat = new import_eslintrc.FlatCompat();
-function luban(options = {}, ...userConfigs) {
+var import_eslint_plugin_disable_autofix = __toESM(require("eslint-plugin-disable-autofix"), 1);
+function luban(options, ...userConfigs) {
   const isInEditor = !!((import_node_process.default.env.VSCODE_PID || import_node_process.default.env.JETBRAINS_IDE || import_node_process.default.env.VIM) && !import_node_process.default.env.CI);
   const {
     alias = {
@@ -47,10 +46,15 @@ function luban(options = {}, ...userConfigs) {
       extensions: [".ts", ".js", ".jsx", "tsx", ".vue", ".json"]
     },
     ...rest
-  } = options;
+  } = options || {};
   return (0, import_eslint_config.default)(
     {
       ...rest
+    },
+    {
+      plugins: {
+        "disable-autofix": import_eslint_plugin_disable_autofix.default
+      }
     },
     {
       settings: {
@@ -90,15 +94,12 @@ function luban(options = {}, ...userConfigs) {
         curly: "off"
       }
     },
-    // disable auto fix
-    compat.plugins("disable-autofix"),
     {
       rules: {
+        "unused-imports/no-unused-imports": "warn",
         ...isInEditor ? {
-          "disable-autofix/unused-imports/no-unused-imports": "warn"
-        } : {
           "unused-imports/no-unused-imports": "warn"
-        }
+        } : {}
       }
     },
     {
