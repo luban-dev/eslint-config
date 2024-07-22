@@ -49,6 +49,7 @@ function luban(options, ...userConfigs) {
         "style/brace-style": ["warn", "1tbs"],
         "antfu/top-level-function": "off",
         "no-console": "off",
+        "import/order": "off",
         curly: "off"
       }
     },
