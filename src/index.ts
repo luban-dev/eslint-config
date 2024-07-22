@@ -1,6 +1,4 @@
-import process from 'node:process';
 import antfu from '@antfu/eslint-config';
-import disableAutofix from 'eslint-plugin-disable-autofix';
 
 type AntfuArguments = Parameters<typeof antfu>;
 type RestArguments = AntfuArguments[1][];
@@ -15,7 +13,6 @@ type Options = AntfuArguments[0] & {
 };
 
 export default function luban(options?: Options, ...userConfigs: RestArguments) {
-  const isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI);
   const {
     alias = {
       map: [
@@ -29,11 +26,6 @@ export default function luban(options?: Options, ...userConfigs: RestArguments) 
   return antfu(
     {
       ...rest
-    },
-    {
-      plugins: {
-        'disable-autofix': disableAutofix
-      }
     },
     {
       settings: {
@@ -71,16 +63,6 @@ export default function luban(options?: Options, ...userConfigs: RestArguments) 
         'antfu/top-level-function': 'off',
         'no-console': 'off',
         curly: 'off'
-      }
-    },
-    {
-      rules: {
-        'unused-imports/no-unused-imports': 'warn',
-        ...isInEditor
-          ? {
-              'unused-imports/no-unused-imports': 'warn'
-            }
-          : {}
       }
     },
     {

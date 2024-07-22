@@ -1,7 +1,7 @@
 {
   "name": "@luban-ui/eslint-config",
   "type": "module",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Lu Ban ui ESLint config",
   "author": "Season Chen season.chen.i@foxmail.com> (https://github.com/ccqgithub/)",
   "license": "MIT",
@@ -31,8 +31,7 @@
   },
   "dependencies": {
     "@antfu/eslint-config": "^2.23.1",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-disable-autofix": "^5.0.1"
+    "eslint-import-resolver-alias": "^1.1.2"
   },
   "devDependencies": {
     "@types/eslint": "^8.56.10",

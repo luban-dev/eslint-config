@@ -33,11 +33,8 @@ __export(src_exports, {
   default: () => luban
 });
 module.exports = __toCommonJS(src_exports);
-var import_node_process = __toESM(require("process"), 1);
 var import_eslint_config = __toESM(require("@antfu/eslint-config"), 1);
-var import_eslint_plugin_disable_autofix = __toESM(require("eslint-plugin-disable-autofix"), 1);
 function luban(options, ...userConfigs) {
-  const isInEditor = !!((import_node_process.default.env.VSCODE_PID || import_node_process.default.env.JETBRAINS_IDE || import_node_process.default.env.VIM) && !import_node_process.default.env.CI);
   const {
     alias = {
       map: [
@@ -50,11 +47,6 @@ function luban(options, ...userConfigs) {
   return (0, import_eslint_config.default)(
     {
       ...rest
-    },
-    {
-      plugins: {
-        "disable-autofix": import_eslint_plugin_disable_autofix.default
-      }
     },
     {
       settings: {
@@ -92,14 +84,6 @@ function luban(options, ...userConfigs) {
         "antfu/top-level-function": "off",
         "no-console": "off",
         curly: "off"
-      }
-    },
-    {
-      rules: {
-        "unused-imports/no-unused-imports": "warn",
-        ...isInEditor ? {
-          "unused-imports/no-unused-imports": "warn"
-        } : {}
       }
     },
     {

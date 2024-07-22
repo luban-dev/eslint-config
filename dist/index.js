@@ -1,9 +1,6 @@
 // src/index.ts
-import process from "process";
 import antfu from "@antfu/eslint-config";
-import disableAutofix from "eslint-plugin-disable-autofix";
 function luban(options, ...userConfigs) {
-  const isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI);
   const {
     alias = {
       map: [
@@ -16,11 +13,6 @@ function luban(options, ...userConfigs) {
   return antfu(
     {
       ...rest
-    },
-    {
-      plugins: {
-        "disable-autofix": disableAutofix
-      }
     },
     {
       settings: {
@@ -58,14 +50,6 @@ function luban(options, ...userConfigs) {
         "antfu/top-level-function": "off",
         "no-console": "off",
         curly: "off"
-      }
-    },
-    {
-      rules: {
-        "unused-imports/no-unused-imports": "warn",
-        ...isInEditor ? {
-          "unused-imports/no-unused-imports": "warn"
-        } : {}
       }
     },
     {
