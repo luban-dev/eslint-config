@@ -1,7 +1,7 @@
 {
   "name": "@luban-ui/eslint-config",
   "type": "module",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "description": "Lu Ban ui ESLint config",
   "author": "Season Chen season.chen.i@foxmail.com> (https://github.com/ccqgithub/)",
   "license": "MIT",
@@ -24,13 +24,14 @@
   "scripts": {
     "lint": "eslint",
     "build": "tsup src/index.ts",
-    "release": "npm publish --access=public"
+    "release": "npm publish --access=public",
+    "install-deps": "npm i --force --registry https://registry.npmmirror.com"
   },
   "peerDependencies": {
     "eslint": ">=8.4.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.23.2",
+    "@antfu/eslint-config": "^3.7.3",
     "eslint-import-resolver-alias": "^1.1.2"
   },
   "devDependencies": {
